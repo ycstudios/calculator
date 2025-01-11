@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+</head>
+<body>
+
+    <!-- Number and operator buttons -->
+    <p>
+        <button onclick="calculator('1');">1</button>
+        <button onclick="calculator('2');">2</button>
+        <button onclick="calculator('3');">3</button>
+    </p>
+    <p>
+        <button onclick="calculator('4');">4</button>
+        <button onclick="calculator('5');">5</button>
+        <button onclick="calculator('6');">6</button>
+    </p>
+    <p>
+        <button onclick="calculator('7');">7</button>
+        <button onclick="calculator('8');">8</button>
+        <button onclick="calculator('9');">9</button>
+    </p>
+    <p>
+        <button onclick="calculator('0');">0</button>
+        <button onclick="calculator('+');">+</button>
+        <button onclick="calculator('*');">*</button>
+    </p> 
+    <p>
+        <button onclick="calculator('/');">/</button>
+        <button onclick="calculator('=');">=</button>
+        <button onclick="calculator('C');">C</button>
+    </p>
+
+    <script>
+        // Variable to hold the current calculation expression
+        let calculation = '';
+
+        /**
+         * Main calculator function
+         * Handles different inputs (numbers, operators, and actions like = or C)
+         */
+        function calculator(operator) {
+            let result = 0; // Initialize result variable
+
+            // If the operator is a number (0–9), append it to the calculation
+            for (let i = 0; i <= 9; i++) {
+                if (operator === String(i)) {
+                    calculation += String(i); // Append the number to the current expression
+                }
+            }
+
+            // Handle addition operator
+            if (operator === '+') {
+                calculation += '+'; // Append + to the expression
+            } 
+            // Handle multiplication operator
+            else if (operator === '*') {
+                calculation += '*'; // Append * to the expression
+            } 
+            // Handle division operator
+            else if (operator === '/') {
+                calculation += '/'; // Append / to the expression
+            } 
+            // Handle equals operator
+            else if (operator === '=') {
+                try {
+                    result = eval(calculation); // Evaluate the expression using eval
+                    alert(`Expression Entered: ${calculation}, Result: ${result}`);
+                } catch (e) {
+                    alert('Invalid Expression Entered'); // Catch and display errors
+                }
+            } 
+            // Handle clear action
+            else if (operator === 'C') {
+                calculation = ''; // Reset the calculation expression
+                alert('Expression Cleared'); // Notify the user
+            }
+        }
+    </script>
+</body>
+</html>
